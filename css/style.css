@@ -1,0 +1,12 @@
+.footer,
+aside {
+    text-align: center;
+}
+
+.section,
+.footer {
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 30px;
+}
