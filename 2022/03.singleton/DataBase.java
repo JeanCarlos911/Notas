@@ -1,18 +1,13 @@
 public class DataBase {
-    private static DataBase dataBase;
+    private static final DataBase dataBase = new DataBase();
     
-    private DataBase() {
-        dataBase = null;
-    }
+    private DataBase() {}
 
     public String getResponse() {
         return "An example response";
     }
 
     public static DataBase getDataBase() {
-        if(dataBase == null) {
-            dataBase = new DataBase();
-        }
         return dataBase;
     }
 }
