@@ -1,5 +1,5 @@
 public class enum Person {
-    // always private atributtes and only edited by the accesors methods
+    // always private atributtes and only edited by the accesors methods for maintability
     private int age;
     private boolean adult;
 
