@@ -2,11 +2,9 @@ package sitp.v2018;
 
 import model.Destination;
 import model.Usuario;
-import model.Zone;
 import service.*;
 import sitp.SITP;
-import sitp.v2018.destination.Perdomo;
-import sitp.v2018.destination.PortalTunal;
+import sitp.v2018.destination.*;
 
 import java.util.ArrayList;
 public class SITP2018 implements SITP {
@@ -17,12 +15,37 @@ public class SITP2018 implements SITP {
     private ArrayList<Destination> especialDestinations;
     private ArrayList<Destination> complementaryDestinations;
     public SITP2018() {
-        trunkLineDestinations.add(new PortalTunal());
-        trunkLineDestinations.add(new PortalTunal());
-        trunkLineDestinations.add(new PortalTunal());
-
+        loadDestinations();
         loadServices();
-        loadZones();
+    }
+    private void loadDestinations() {
+        Destination portalTunal = PortalTunal.getInstance();
+        Destination paraiso = Paraiso.getInstance();
+
+        trunkLineDestinations = new ArrayList<>();
+        trunkLineDestinations.add(portalTunal);
+        trunkLineDestinations.add(new Destination("Cl. 45"));
+        trunkLineDestinations.add(new Destination("Av. 39"));
+
+        feederDestinations = new ArrayList<>();
+        feederDestinations.add(new Destination("Portal del norte"));
+        feederDestinations.add(paraiso);
+        feederDestinations.add(portalTunal);
+
+        urbanDestinations = new ArrayList<>();
+        urbanDestinations.add(new Destination("Palmitas"));
+        urbanDestinations.add(new Destination("Patio Bonito"));
+        urbanDestinations.add(new Destination("La Cabrera"));
+
+        especialDestinations = new ArrayList<>();
+        especialDestinations.add(new Destination("Vicentenario"));
+        especialDestinations.add(new Destination("El Verjón"));
+        especialDestinations.add(new Destination("Unicerros"));
+
+        complementaryDestinations = new ArrayList<>();
+        complementaryDestinations.add(new Destination("Kennedy"));
+        complementaryDestinations.add(new Destination("Cedritos"));
+        complementaryDestinations.add(new Destination("Girardot"));
     }
 
     private void loadServices() {
@@ -34,26 +57,13 @@ public class SITP2018 implements SITP {
         services.add(new Urbano());
     }
 
-    private void loadZones() {
-        zones = new ArrayList<>();
-        zones.add(new Perdomo);
-    }
     @Override
     public ArrayList<Transporte> getServices() {
         return services;
     }
 
     @Override
-    public ArrayList<Zone> getZones() {
-        return zones;
-    }
-
-    @Override
     public void transportarUsuario(Usuario usuario, Destination start, Destination end) {
-        for(Zone zone: zones) {
-            if(zone.getDestinations().contains(start)) {
-                
-            }
-        }
+        usuario.setLocation(end.getName());
     }
 }

@@ -26,4 +26,9 @@ public class SITP2019 implements SITP {
     public void transportarUsuario(Usuario usuario, Destination start, Destination end) {
 
     }
+
+    @Override
+    public ArrayList<Transporte> getServices() {
+        return newServices;
+    }
 }
